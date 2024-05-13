@@ -67,6 +67,10 @@
     @apply border border-black/20 rounded-md px-4 py-2;
   }
 
+  button:disabled {
+    @apply bg-gray-500 cursor-default;
+  }
+
   input[type="checkbox"] {
     @apply mx-1;
   }

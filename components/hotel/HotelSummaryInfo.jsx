@@ -3,6 +3,7 @@ import HotelReviewInfo from "./HotelReviewInfo";
 import Link from "next/link";
 
 const HotelSummaryInfo = ({ fromListPage, info }) => {
+  console.log(info);
   return (
     <>
       <div className={fromListPage ? "flex-1" : "flex-1 container"}>
@@ -15,6 +16,7 @@ const HotelSummaryInfo = ({ fromListPage, info }) => {
         <div className="flex gap-2 items-center my-4">
           <HotelRating id={info?.id} />
           <HotelReviewInfo id={info?.id} />
+          {info?.isBooked && <span className="text-blue-500">ALready Booked</span>}
         </div>
         <div>
           <span className="bg-yellow-300 p-1 rounded-md">
