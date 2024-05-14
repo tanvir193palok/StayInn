@@ -2,6 +2,7 @@ import { hotelModel } from "@/models/hotel-model";
 import { ratingModel } from "@/models/rating-model";
 import { reviewModel } from "@/models/review-model";
 import { bookingModel } from "@/models/booking-model";
+import { userModel } from "@/models/user-model";
 
 import {
   replaceMongoIdInArray,
@@ -9,7 +10,6 @@ import {
 } from "@/utils/data-util";
 
 import { isDateInbetween } from "@/utils/data-util";
-import { userModel } from "@/models/user-model";
 
 export async function getAllHotels(destination, checkin, checkout) {
   const regex = new RegExp(destination, "i");
@@ -87,6 +87,10 @@ export async function getReviewsForAHotel(hotelId) {
 
 export async function getUserByEmail(email) {
   const users = await userModel.find({ email: email }).lean();
-
   return replaceMongoIdInObject(users[0]);
+}
+
+export async function getBookingsByUser(userId) {
+  const bookings = await bookingModel.find({ userId: userId }).lean();
+  return replaceMongoIdInArray(bookings);
 }
