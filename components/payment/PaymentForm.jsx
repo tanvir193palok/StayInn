@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const PaymentForm = ({ user, hotelInfo, checkin, checkout }) => {
+const PaymentForm = ({ user, hotelInfo, checkin, checkout, totalCost }) => {
   const router = useRouter();
   const [error, setError] = useState("");
 
@@ -109,7 +109,7 @@ const PaymentForm = ({ user, hotelInfo, checkin, checkout }) => {
       </div>
 
       <button type="submit" className="btn-primary w-full">
-        Pay Now ($10)
+        Pay Now ({`$${totalCost}`})
       </button>
     </form>
   );
