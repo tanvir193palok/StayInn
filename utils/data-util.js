@@ -25,6 +25,19 @@ export const isDateInbetween = (date, from, to) => {
 
 export const getDayDifference = (from, to) => {
   return (
-    (new Date(to).getTime() - new Date(from).getTime()) / (24 * 60 * 60 * 1000) + 1
+    (new Date(to).getTime() - new Date(from).getTime()) /
+      (24 * 60 * 60 * 1000) +
+    1
   );
+};
+
+export const isRangeInBetween = (highRate, lowRate, range) => {
+  const bounds = range.split("-");
+  const price = Math.ceil((highRate + lowRate) / 2);
+
+  if (price.toString() > bounds[1] || price.toString() < bounds[0]) {
+    return false;
+  } else {
+    return true;
+  }
 };

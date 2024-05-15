@@ -1,13 +1,22 @@
 import { getAllHotels } from "@/database/queries";
 import HotelCard from "./HotelCard";
 
-const HotelList = async ({ destination, checkin, checkout, category }) => {
+const HotelList = async ({
+  destination,
+  checkin,
+  checkout,
+  category,
+  range,
+}) => {
   const allHotels = await getAllHotels(
     destination,
     checkin,
     checkout,
-    category
+    category,
+    range
   );
+
+  console.log("all", allHotels);
 
   return (
     <div className="col-span-9">

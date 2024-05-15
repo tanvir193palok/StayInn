@@ -5,13 +5,20 @@ import { bookingModel } from "@/models/booking-model";
 import { userModel } from "@/models/user-model";
 
 import {
+  isRangeInBetween,
   replaceMongoIdInArray,
   replaceMongoIdInObject,
 } from "@/utils/data-util";
 
 import { isDateInbetween } from "@/utils/data-util";
 
-export async function getAllHotels(destination, checkin, checkout, category) {
+export async function getAllHotels(
+  destination,
+  checkin,
+  checkout,
+  category,
+  range
+) {
   const regex = new RegExp(destination, "i");
   const hotelsByDestination = await hotelModel
     .find({ city: { $regex: regex } })
@@ -32,6 +39,20 @@ export async function getAllHotels(destination, checkin, checkout, category) {
 
     allHotels = allHotels.filter((hotel) => {
       return categoriesToMatch.includes(hotel.propertyCategory.toString());
+    });
+  }
+
+  if (range) {
+    const rangesToMatch = range.split("|");
+
+    allHotels = allHotels.filter((hotel) => {
+      return (
+        hotel &&
+        rangesToMatch.some(
+          (range) =>
+            isRangeInBetween(hotel?.highRate, hotel?.lowRate, range) === true
+        )
+      );
     });
   }
 

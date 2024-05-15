@@ -12,8 +12,18 @@ const refineCategory = (category) => {
   return decodedCategory;
 };
 
+const refineRange = (range) => {
+  const decodedRange = decodeURI(range);
+
+  if (decodedRange === "undefined") {
+    return "";
+  }
+
+  return decodedRange;
+};
+
 const HotelListPage = ({
-  searchParams: { destination, checkin, checkout, category },
+  searchParams: { destination, checkin, checkout, category, range },
 }) => {
   return (
     <>
@@ -35,6 +45,7 @@ const HotelListPage = ({
             checkin={checkin}
             checkout={checkout}
             category={refineCategory(category)}
+            range={refineRange(range)}
           />
         </div>
       </section>
