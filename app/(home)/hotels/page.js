@@ -1,9 +1,19 @@
 import Search from "@/components/search/Search";
-import Filter from "@/components/search/Filter";
+import Filter from "@/components/search/filter/Filter";
 import HotelList from "@/components/hotel/HotelList";
 
+//function to handle string undefined in category param
+const refineCategory = (category) => {
+  const decodedCategory = decodeURI(category);
+
+  if (decodedCategory === "undefined") {
+    return "";
+  }
+  return decodedCategory;
+};
+
 const HotelListPage = ({
-  searchParams: { destination, checkin, checkout },
+  searchParams: { destination, checkin, checkout, category },
 }) => {
   return (
     <>
@@ -24,6 +34,7 @@ const HotelListPage = ({
             destination={destination}
             checkin={checkin}
             checkout={checkout}
+            category={refineCategory(category)}
           />
         </div>
       </section>
