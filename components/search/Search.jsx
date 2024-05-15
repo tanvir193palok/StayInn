@@ -65,10 +65,10 @@ const Search = ({ fromList, destination, checkin, checkout }) => {
                 defaultValue={searchTerm.destination}
               >
                 <option value="Puglia">Puglia</option>
-                <option value="Catania">Catania</option>
-                <option value="Palermo">Palermo</option>
-                <option value="Frejus">Frejus</option>
                 <option value="Paris">Paris</option>
+                <option value="London">London</option>
+                <option value="Frejus">Frejus</option>
+                <option value="Catania">Catania</option>
               </select>
             </h4>
           </div>
